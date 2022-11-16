@@ -1,0 +1,18 @@
+0. Подготовка к сборке
+$gcc -c main.c
+$gcc -c hello.c
+$ls
+hello.c  hello.o  main.c  main.o
+
+1. Сбока бинарника
+$gcc -o hello main.o hello.o
+$ls
+hello*  hello.c  hello.o  main.c  main.o
+$./hello
+Hello World
+
+2. Объектные файлы содержат таблицу символов. 
+Утилита nm как раз позволяет посмотреть эту таблицу в читаемом виде. 
+nm hello.o 
+nm main.o
+
