@@ -1,0 +1,1 @@
+int putenv (char * str);
