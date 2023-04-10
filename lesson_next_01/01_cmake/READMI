@@ -1,0 +1,17 @@
+CMake
+- кроссплатформенная система автоматизации сборки
+- генерирует сборочные файлы
+- много возможностей
+
+Использование:
+0. Описать свой проект в CMakeList.txt
+1. cmake ${source_dir}
+2. cmake --build .
+3 cmake --build . --target install
+
+
+
+Реальный пример сборки:
+mkdir build 
+cd build 
+cmake ..

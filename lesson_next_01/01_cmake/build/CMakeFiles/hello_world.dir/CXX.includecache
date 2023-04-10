@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/githabmegafolder/c-test/lesson_next_01/01_cmake/hello_world.cpp
+iostream
+-
+string
+-
+version.h
+/home/pi/githabmegafolder/c-test/lesson_next_01/01_cmake/version.h
+
+/home/pi/githabmegafolder/c-test/lesson_next_01/01_cmake/version.h
+

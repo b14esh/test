@@ -1,0 +1,10 @@
+g++ hello_world_00.cpp -o hello -std=c++14
+g++ hello_world_01.cpp -o hello1 -std=c++14
+
+
+
+
+http://cpp.sh
+https:/wandbox.org
+https://www.onlinedgb.com
+https://godbolt.org
