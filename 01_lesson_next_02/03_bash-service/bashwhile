@@ -1,0 +1,16 @@
+n=1
+while [ $n -lt 4 ]
+do 
+  echo "$n "
+  n=$(($n+1));
+done
+
+
+
+n=1 
+while :
+do 
+   test $n -eq 4 && break
+   echo $n
+   n=$(($n+1))
+done  

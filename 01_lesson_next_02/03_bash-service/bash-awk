@@ -1,0 +1,12 @@
+#!/usr/bin/awk -f
+BEGIN {
+print "Мой сценарий\n"
+counter=0
+}
+{
+print "Основная программа\n"
+}
+END {
+print "Сценарий завершен"
+printf ("\nСчетчик:\t%d\n", counter)
+}

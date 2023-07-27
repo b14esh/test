@@ -1,0 +1,8 @@
+for i in 1 2 3; do 
+      for n in 1 2 3; do 
+      #echo $i 
+      #echo $n
+      c=$(($i + $n)) 
+      echo "$i + $n = $c"
+      done
+done

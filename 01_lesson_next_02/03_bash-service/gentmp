@@ -1,0 +1,6 @@
+#!/bin/bash
+prefix="tmp_"
+suffix=`mcookie`
+temp_filename=$prefix.$suffix
+echo "Имя файла = \"$temp_filename\""
+exit 0
