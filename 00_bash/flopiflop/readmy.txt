@@ -1,0 +1,19 @@
+Выполнить обращение и посмотреть что нам доступно:
+snmpwalk -v 2c -c YOU_COMMUNITY 192.168.0.100
+snmpwalk -v 2c -c YOU_COMMUNITY 192.168.0.101
+
+показать доступный интерфейс:
+snmpwalk -v 2c -c YOU_COMMUNITY  192.168.0.100 ifDescr
+snmpwalk -v 2c -c YOU_COMMUNITY  192.168.0.101 ifDescr
+
+вывести номер интерфейсов
+snmpwalk -v 2c -c YOU_COMMUNITY  192.168.0.100 ifIndex
+snmpwalk -v 2c -c YOU_COMMUNITY  192.168.0.101 ifIndex
+
+Отключение интерфейса:
+snmpset -v 2c -c YOU_COMMUNITY  192.168.0.100 ifAdminStatus.49154 i 2
+snmpset -v 2c -c YOU_COMMUNITY  192.168.0.101 ifAdminStatus.49154 i 2
+
+Включение интерфейса:
+snmpset -v 2c -c YOU_COMMUNITY  192.168.0.100 ifAdminStatus.49154 i 1
+snmpset -v 2c -c YOU_COMMUNITY  192.168.0.101 ifAdminStatus.49154 i 1
