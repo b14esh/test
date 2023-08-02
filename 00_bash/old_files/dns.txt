@@ -1,0 +1,23 @@
+1. dns bash
+#!/bin/bash
+for name in $(cat dns.txt);do
+host $name.b14esh.com | grep "has address" | cut -d" " -f4
+done
+
+2. dns bash
+#!/bin/bash
+for name in $(cat dns.txt);do
+host $name.b14esh.com | grep "has address"
+done
+
+3. dns bash
+#!/bin/bash
+for name in $(cat dns.txt);do
+host $name.b14esh.com
+done
+
+4. dns.txt
+mail
+test
+www
+

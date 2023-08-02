@@ -1,0 +1,105 @@
+Циклы в bash создаются с помощью трех команд. Команда for осуществляет цикл со всеми элементами указанного списка. 
+Команда while выполняет цикл до тех пор, пока указанное условие не перестанет выполняться. 
+Команда until, наоборот, осуществляет цикл до тех пор, пока указанное условие не будет выполнено. 
+Все три цикла можно досрочно завершить командой break. 
+Команда continue пропускает оставшуюся часть тела цикла и запускает цикл заново.
+В первом примере переменной i по очереди присваиваются последовательности символов a, b и с. 
+В теле цикла между do и done выводится содержимое переменной. 
+Обратите внимание, что в конце списка, а также в конце команды echo необходимо поставить точку с запятой. 
+Отказаться от этих точек с запятой можно лишь тогда, когда ввод разделен на несколько строк (часто такое случается в сценарных файлах).
+ 
+Список для for может быть построен с использованием джокерных символов для имен файлов или с использованием конструкций вида {..}, 
+с помощью которых создаются последовательности символов. 
+ 
+(В Linux/UNIX тильда (~) в конце имени файла обычно означает резервную копию. 
+При работе с командой ср выражение $file всякий раз ставится в кавычках, 
+чтобы имена файлов, содержащие пробелы, обрабатывались правильно.)
+ 
+Если циклы for создаются без in ..., то переменные циклов получают по порядку все параметры, 
+переданные при вызове (то есть это соответствует in $*). Похож на цикл case.
+Но когда в примере с case передаются имена файлов, содержащие пробелы, без проблем не обходится. 
+Bash интерпретирует пробелы как разделительные знаки и обрабатывает части имени файла отдельно.
+
+
+
+Пример:
+for i in a b с; do echo $i; done 
+
+
+Пример:
+#! /bin/sh
+for i in a b c; do 
+ echo $i 
+done
+
+
+Пример:
+for file in *.tex; do cp "$file" "$file~"; done
+
+
+Пример:
+#!/bin/bash
+# Цикл проходит через все
+# правильно справляется с пробелами в именах файлов
+for i in "$@"; do 
+ ls -l  "$i" 
+done
+
+
+
+Пример:
+Выполняется команда ls и формируется список из файлов, дальше выводит содержимое файлов и каждый вывод отделается пустыми строками с #### и именем файла
+for i in `ls` ;do echo -e "\\n#### $i \\n" && cat $i ;done 
+
+
+Пример:
+for((i=1; i< 255; i++));do echo $i; done - генерируем число от 1 до 255 и выводим на экран
+ 
+echo $(( RANDOM % (10 - 5 + 1 ) + 5 ))
+ 
+seq -w 1 10000000000
+
+
+
+
+Еще примеры for:
+# ping 
+for ipz in $(for((i=1; i< 255; i++));do echo $i; done) ; do echo 192.168.15.$ipz >> ip_files.txt ; done
+ 
+# ping 
+for pingz in $(cut ip_files.txt); do ping -c1  $pingz ; done
+ 
+# cut file
+for user in $(cut -d':' -f1 /etc/passwd); do crontab -u $user -l; done
+ 
+# sed edit file
+for i in file1 file2 file3 ; do sed -i 's/123456/abvgd/g' /home/user/$i; done
+ 
+# grep -R vnc /kvm/$(hostname -s)/*.xml | egrep -o "port='[0-9]+'" | sed -e "s/'//g" | awk -F"port=" '{print $2}' | sort -n
+ 
+# openwrt hostname???
+for i in `cat hosts.txt | tail -n 35 | grep -v "#"`; do echo " #### server IP = $i ###" && ssh root@$i uci get  system.@system[0].hostname; done
+ 
+# parse MAC
+for i in `cat hosts.txt | tail -n 39 | grep -v "#"`; do ssh $i ip a | grep ether | awk '{print $2}' && echo ; done
+ 
+# parse MAC print host
+for i in `cat hosts.txt | tail -n 39 | grep -v "#"`; do ssh $i uci get  system.@system[0].hostname && ip a | grep ether | awk '{print $2}' && echo ; done
+ 
+##parse maccc
+for i in `cat hosts.txt | tail -n 39 | grep -v "#"`; do ssh $i fdddd="`uci get  system.@system[0].hostname`" && echo $fdddd  && ip a | grep ether | awk '{print $2}' && echo ; done
+ 
+#scp file
+for i in `cat hosts.txt | tail -n 39 | grep -v "#"`; do scp bat-hosts root@$i:/etc/bat-hosts; done
+ 
+#scp nameserver 192.168.1.1
+for i in `cat hosts.txt.ssh`; do scp resolv.conf ${i}:/etc/resolv.conf; done
+ 
+#test scp resolv.conf
+for i in `cat hosts.txt.ssh`; do ssh $i cat  /etc/resolv.conf; done
+ 
+#rm files
+for f in log.* ; do if [ ! -s $f ] ; then rm -v $f ; fi ; done
+
+
+

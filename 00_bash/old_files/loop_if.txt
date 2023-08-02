@@ -1,0 +1,159 @@
+Синтаксис и примеры if:
+Пример if в файле:
+if test
+then
+    commands
+fi
+
+Пример if в файле:
+if test
+then
+    commands
+else
+    commands
+fi
+
+Синтаксис и примеры if: 
+if test
+then
+    commands
+elif test2
+then
+    commands
+elif test3
+then
+    commands
+else
+    commands
+fi
+
+Пример использования if в командной строке:
+$ ls
+datafile  emptyfile
+$ if [ ! -s datafile ] ; then echo "empty" ; fi
+$ if [ ! -s emptyfile ] ; then echo "empty" ; fi
+empty
+
+
+
+
+Оболочка предоставляет также специальную команду if, которая позволяет управлять последовательностью исполнения целых блоков команд. 
+В качестве примера предположим, что требуется обеспечить выход из некоторого сценария с ошибкой, если в командной строке установлено отличное от единицы число аргументов командной строки. 
+При этом команда должна сообщать об ошибке и выдавать подсказку о правильном варианте ее использования
+ 
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+     cat <<- ERR
+             Недостаточно аргументов.
+             Использование:
+             if.sh file
+             Аргумент file должен быть обычным файлом.
+     ERR
+     exit 1
+fi
+ls -l $1
+ 
+Команда if исполняет блок команд после команды then, только в случае получения нулевого кода возврата команды, указанной в качестве ее аргумента.
+В данном случае аргумент команды if — это команда test, которая проверяет количество аргументов сценария. 
+Если количество аргументов не равно единице, то выполняется блок операторов после then до команды fi, заканчивающей if.
+Конструкция cat <<- ERR — это "here document". Она позволяет указывать целый блок данных непосредственно в теле сценария, 
+передавая его в данном случае в стандартный поток ввода команде cat для вывода на экран. 
+ 
+Блок данных ограничен строкой ERR. В этом примере используется оператор <<- вместо << для игнорирования табуляций перед блоком данных.
+ 
+./if.sh
+./if.sh if.sh
+
+
+
+
+Команда if допускает использование команды elif для выполнения дополнительной проверки
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+       cat <<- ERR
+               Недостаточно аргументов.
+               Использование:
+               if.sh file
+              Аргумент file должен быть обычным файлом.
+       ERR
+exit 1
+ 
+elif [ ! -f $1 ]
+then
+    echo -n 'Тип файла '
+    file $1
+    exit 1
+fi
+ls -l $1
+ 
+Если аргументом задан специальный файл, то выводится его тип
+./if.sh
+
+
+
+
+Команда else
+В команде if можно также использовать else для указания блока операторов, которые должны исполняться в случае, если предыдущие проверки не закончились успехом
+ 
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+     cat <<- ERR
+             Недостаточно аргументов.
+             Использование:
+             if.sh file
+             Аргумент file должен быть обычным файлом.
+     ERR
+     exit 1
+elif [ ! -f $1 ]
+then
+    echo -n 'Тип файла '
+    file $1
+    exit 1
+else
+   ls -l $1
+fi
+
+
+
+
+
+
+
+Еще пример:
+#!!! Удаляем из каталога (/temp/33) каталог, если вывод ls (/temp/33) больше 1
+if (( `ls /temp/33 | wc -l` > 1)); then
+/usr/bin/find /tmp/33 -mindepth 1 -maxdepth 1 -type d | sort -n | head -n1 | while read LINE; do
+    echo "[/tmp/33] ${LINE}"
+    rm -rf "${LINE}"
+done
+fi
+
+
+И еще пример:
+#!!! определение свободного места
+#!/bin/bash
+freespace=`df -m | grep "/dev/sdb" | awk '{print $4}'`
+if [ $freespace -le 700 ]
+    then
+    echo "Warning!!! On the Server running out of space on your hard drive. Freespace - "$freespace"Mb" | mail -s "FreeSpase on the Server" root@domain.com
+fi
+
+
+
+И еще примеры:
+#!!! Проверка маршрута для openvpn 
+#!/bin/bash
+# Script for cron, check if route to VPN server exists
+ 
+route=`ip r | grep "85.143.252.68"`
+ 
+if [ -z "$route" ]; then
+    systemctl restart openvpn-client@MskLabSokolov.service
+    logger "Route doesn't exist, restart OpenVPN client"
+fi
+
+
+

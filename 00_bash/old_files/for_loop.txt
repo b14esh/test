@@ -1,0 +1,20 @@
+Синтаксис и примеры for:
+
+Пример for в файле:
+for variable in list
+do
+    commands
+done
+
+
+Пример for в командной строке:
+for variable in list ; do commands ; done
+
+
+Пример использования for в командной строке:
+$ ls 
+filemgr.png  terminal.png
+
+$ for f in *.png ; do mv $f screenshot-$f ; done
+$ ls
+screenshot-filemgr.png  screenshot-terminal.png
