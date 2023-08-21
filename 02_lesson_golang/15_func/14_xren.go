@@ -8,6 +8,7 @@ func znak() {
 }
 
 func main() {
+
 	x := *x
 	fmt.Println(x + x)
 
