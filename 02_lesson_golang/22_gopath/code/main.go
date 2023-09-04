@@ -1,6 +1,6 @@
 package main
 import "greeting"
-ifunc main() {
+func main() {
 	greeting.Hello()
 	greeting.Hi()
 }

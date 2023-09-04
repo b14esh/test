@@ -1,0 +1,2 @@
+#source export GOPATH="/home/pi/githabmegafolder/c-test/02_lesson_golang/22_gopath/code"
+export GOPATH="/home/pi/githabmegafolder/c-test/02_lesson_golang/22_gopath/code"

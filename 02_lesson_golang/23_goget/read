@@ -1,0 +1,10 @@
+0. Переходим нужный каталог:
+cd /home/pi/githabmegafolder/c-test/02_lesson_golang/23_goget/go
+1. Экспортируем GOPATH / каталог по умолчанию для go:
+export  GOPATH=$(pwd)
+2. Проверить переменную GOPATH:
+env | grep GOPATH
+
+3. скачиваем пакеты:
+go get github.com/headfirstgo/keyboard
+go get github.com/headfirstgo/greeting
