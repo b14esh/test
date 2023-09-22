@@ -1,0 +1,7 @@
+ip a | grep -vE "lo:|sit0@NONE:" | awk '/state/{print $2}'| sed -e s/\ /\\n/g > 1x
+ip a | awk '/link\/ether/{print $2}'| sed -e s/\ /\\n/g > 2x
+sed -i 's/^/[/' 1x
+sed -i 's/$/ -/' 1x
+sed -i 's/$/]/' 2x
+paste 1x 2x | sed 's/\t/ /g'
+ip  a  | grep "scope global fm1-mac3" | awk '{print "[fm1-mac3 - "$2"]"}'
