@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-
 type subscriber struct {
 	name        string
 	rate        float64
@@ -26,6 +25,6 @@ type address struct {
 func main() {
 	subscriber := subscriber{}
 	fmt.Printf("%#v\n", subscriber.homeaddress)
-
+	subscriber.homeaddress.postalcode = "68111"
+	fmt.Println("Postal Code:", subscriber.homeaddress.postalcode)
 }
-
