@@ -70,6 +70,10 @@ func main() {
 	b = 5
 	c = 2
 
+	//a = 2
+	//b = 4
+	//c = 2
+
 	fmt.Println("A(x*x) + Bx + C")
 	d := b*b - 4*a*c
 	fmt.Printf("Находим дискриминант: %f \n", d)
