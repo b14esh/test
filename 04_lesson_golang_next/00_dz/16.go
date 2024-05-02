@@ -65,10 +65,10 @@ func main() {
 	//	fmt.Printf("x2 = %.2f, x3 = %.2fi\n", x2, x2)
 	//}
 
-	//fmt.Scan(&a, &b, &b)
-	a = 2
-	b = 5
-	c = 2
+	fmt.Scan(&a, &b, &b)
+	//a = 2
+	//b = 5
+	//c = 2
 
 	//a = 2
 	//b = 4
