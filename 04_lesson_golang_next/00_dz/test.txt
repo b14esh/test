@@ -1,0 +1,16 @@
+[Unit]
+Description=bh2-service
+After=network.target
+
+[Service]
+Type=forking
+TimeoutStartSec=10
+ExecStart=/usr/bin/bh2-script.sh
+Строка которую заменить
+
+SyslogIdentifier=bh2-service
+SyslogFacility=daemon
+
+[Install]
+WantedBy=multi-user.target
+Строка которую заменить
