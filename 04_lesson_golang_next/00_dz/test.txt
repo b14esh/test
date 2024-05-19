@@ -6,11 +6,11 @@ After=network.target
 Type=forking
 TimeoutStartSec=10
 ExecStart=/usr/bin/bh2-script.sh
-Строка которую заменить
+На что заменить
 
 SyslogIdentifier=bh2-service
 SyslogFacility=daemon
 
 [Install]
 WantedBy=multi-user.target
-Строка которую заменить
+На что заменить
