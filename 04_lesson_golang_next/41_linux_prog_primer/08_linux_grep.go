@@ -23,10 +23,13 @@ func grep(pattern string, fileName string) {
 
 		if strings.Contains(text, pattern) {
 			fmt.Println(text)
+		} else {
+			fmt.Println("NO")
+
 		}
 	}
 }
 
 func main() {
-	grep("local", "/etc/hosts")
+	grep("local", "hosts")
 }
